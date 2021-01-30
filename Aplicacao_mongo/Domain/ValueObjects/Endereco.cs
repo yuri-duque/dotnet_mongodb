@@ -5,7 +5,7 @@ namespace Domain.Entities
 {
     public class Endereco : AbstractValidator<Endereco>
     {
-        public Endereco(string logradouro, string numero, string cidade, string uf, string cep)
+        public Endereco(string uf, string cidade, string cep, string logradouro, string numero)
         {
             Logradouro = logradouro;
             Numero = numero;

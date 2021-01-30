@@ -7,6 +7,13 @@ namespace Domain.Entities
 {
     public class Restaurante : AbstractValidator<Restaurante>
     {
+        public string Id { get; }
+        public string Nome { get; }
+        public ECozinha Cozinha { get; }
+        public Endereco Endereco { get; private set; }
+
+        #region Construtores
+
         public Restaurante(string id, string nome, ECozinha cozinha)
         {
             Id = id;
@@ -14,10 +21,13 @@ namespace Domain.Entities
             Cozinha = cozinha;
         }
 
-        public string Id { get; }
-        public string Nome { get; }
-        public ECozinha Cozinha { get; }
-        public Endereco Endereco { get; private set; }
+        public Restaurante(string nome, ECozinha cozinha)
+        {
+            Nome = nome;
+            Cozinha = cozinha;
+        }
+
+        #endregion
 
         #region Validaçoes
 
