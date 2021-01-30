@@ -1,6 +1,7 @@
 ﻿using Api.Controllers.ViewModels.Restaurante;
 using Domain.Entities;
 using Domain.Enums;
+using Infra.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
@@ -11,13 +12,18 @@ namespace Api.Controllers
     [Route("[controller]")]
     public class RestauranteController : ControllerBase
     {
-        private readonly ILogger<RestauranteController> _logger;
+        private readonly RestauranteRepository _restauranteRepository;
 
-        public RestauranteController(ILogger<RestauranteController> logger)
+        public RestauranteController(RestauranteRepository restauranteRepository)
         {
-            _logger = logger;
+            _restauranteRepository = restauranteRepository;
         }
 
+        /// <summary>
+        /// Insere um restaurante
+        /// </summary>
+        /// <param name="restauranteInclusao"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult IncluirRestaurante([FromBody] RestauranteInclusaoViewModel restauranteInclusao)
         {
