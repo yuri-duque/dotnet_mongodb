@@ -5,6 +5,7 @@ using Infra.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
@@ -42,6 +43,20 @@ namespace Api.Controllers
             _restauranteRepository.Inserir(restaurante);
 
             return Ok(new { data = "Restaurante inserido com sucesso"});
+        }
+
+        /// <summary>
+        /// Busca todos os restaurantes
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult> ObterRestaurantes()
+        {
+            var restaurantes = await _restauranteRepository.ObterTodos();
+
+            var listagem = restaurantes.Select(x => new RestauranteListagemViewModel(x));
+
+            return Ok(new { data = listagem });
         }
     }
 }
