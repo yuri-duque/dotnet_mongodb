@@ -5,6 +5,12 @@ namespace Domain.Entities
 {
     public class Endereco : AbstractValidator<Endereco>
     {
+        public string Logradouro { get; }
+        public string Numero { get; }
+        public string Cidade { get; }
+        public string UF { get; }
+        public string CEP { get; }
+
         public Endereco(string uf, string cidade, string cep, string logradouro, string numero)
         {
             Logradouro = logradouro;
@@ -13,12 +19,6 @@ namespace Domain.Entities
             UF = uf;
             CEP = cep;
         }
-
-        public string Logradouro { get; }
-        public string Numero { get; }
-        public string Cidade { get; }
-        public string UF { get; }
-        public string CEP { get; }
 
         #region Validaçoes
 

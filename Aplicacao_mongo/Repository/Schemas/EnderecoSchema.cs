@@ -18,10 +18,13 @@ namespace Infra.Schemas
             CEP = endereco.CEP;
             UF = endereco.UF;
         }
+    }
 
-        public Endereco ConvertToEndereco()
+    public static class EnderecoSchemaExtensao
+    {
+        public static Endereco ConverterParaDominio(this EnderecoSchema document)
         {
-            var endereco = new Endereco(UF, Cidade, CEP, Logradouro, Numero);
+            var endereco = new Endereco(document.UF, document.Cidade, document.CEP, document.Logradouro, document.Numero);
 
             return endereco;
         }

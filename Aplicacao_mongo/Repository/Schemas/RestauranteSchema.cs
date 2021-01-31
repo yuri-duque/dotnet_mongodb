@@ -22,10 +22,21 @@ namespace Infra.Schemas
             Endereco = new EnderecoSchema(restaurante.Endereco);
         }
 
-        public Restaurante ConvertToRestaurante()
+        public RestauranteSchema(Restaurante restaurante, string id)
         {
-            var restaurante = new Restaurante(Id, Nome, Cozinha);
-            var endereco = Endereco.ConvertToEndereco();
+            Id = id;
+            Nome = restaurante.Nome;
+            Cozinha = restaurante.Cozinha;
+            Endereco = new EnderecoSchema(restaurante.Endereco);
+        }
+    }
+
+    public static class RestauranteSchemaExtensao
+    {
+        public static Restaurante ConverterParaDominio(this RestauranteSchema document)
+        {
+            var restaurante = new Restaurante(document.Id, document.Nome, document.Cozinha);
+            var endereco = document.Endereco.ConverterParaDominio();
 
             restaurante.SetEndereco(endereco);
 
