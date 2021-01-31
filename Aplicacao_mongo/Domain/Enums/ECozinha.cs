@@ -15,10 +15,11 @@ namespace Domain.Enums
     {
         public static ECozinha ConverterDeInteiro(int valor)
         {
-            if (Enum.TryParse(valor.ToString(), out ECozinha cozinha))
-                return cozinha;
+            if (!Enum.IsDefined(typeof(ECozinha), valor))
+                throw new ArgumentOutOfRangeException("cozinha");
 
-            throw new ArgumentOutOfRangeException("cozinha");
+            Enum.TryParse(valor.ToString(), out ECozinha cozinha);
+            return cozinha;
         }
     }
 }

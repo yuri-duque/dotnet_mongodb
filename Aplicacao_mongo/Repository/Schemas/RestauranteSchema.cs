@@ -19,14 +19,18 @@ namespace Infra.Schemas
         {
             Nome = restaurante.Nome;
             Cozinha = restaurante.Cozinha;
-            Endereco = new EnderecoSchema
-            {
-                Logradouro = restaurante.Endereco.Logradouro,
-                Numero = restaurante.Endereco.Numero,
-                Cidade = restaurante.Endereco.Cidade,
-                CEP = restaurante.Endereco.CEP,
-                UF = restaurante.Endereco.UF,
-            };
+            Endereco = new EnderecoSchema(restaurante.Endereco);
+        }
+
+        public Restaurante ConvertToRestaurante()
+        {
+            var restaurante = new Restaurante(Id, Nome, Cozinha);
+            var endereco = Endereco.ConvertToEndereco();
+
+            restaurante.SetEndereco(endereco);
+
+            return restaurante;
+
         }
     }
 }
