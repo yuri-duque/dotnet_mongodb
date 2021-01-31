@@ -2,11 +2,13 @@
 {
     public class EnderecoViewModel
     {
-        public string Logradouro { get; }
-        public string Numero { get; }
-        public string Cidade { get; }
-        public string UF { get; }
-        public string CEP { get; }
+        public string Logradouro { get; set; }
+        public string Numero { get; set; }
+        public string Cidade { get; set; }
+        public string UF { get; set; }
+        public string CEP { get; set; }
+
+        public EnderecoViewModel() { }
 
         public EnderecoViewModel(Domain.Entities.Endereco endereco)
         {

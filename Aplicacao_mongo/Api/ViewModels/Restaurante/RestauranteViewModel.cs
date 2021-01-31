@@ -5,10 +5,12 @@ namespace Api.ViewModels.Restaurante
 {
     public class RestauranteViewModel
     {
-        public string Id { get; }
-        public string Nome { get; }
-        public int Cozinha { get; }
-        public EnderecoViewModel Endereco { get; private set; }
+        public string Id { get; set; }
+        public string Nome { get; set; }
+        public int Cozinha { get; set; }
+        public EnderecoViewModel Endereco { get; set; }
+
+        public RestauranteViewModel() { }
 
         public RestauranteViewModel(Domain.Entities.Restaurante restaurante)
         {
@@ -25,7 +27,7 @@ namespace Api.ViewModels.Restaurante
         {
             var cozinha = ECozinhaHelper.ConverterDeInteiro(viewModel.Cozinha);
 
-            var restaurante = new Domain.Entities.Restaurante(viewModel.Nome, cozinha);
+            var restaurante = new Domain.Entities.Restaurante(viewModel.Id, viewModel.Nome, cozinha);
             var endereco = viewModel.Endereco.ConverterParaDominio();
             restaurante.SetEndereco(endereco);
 
