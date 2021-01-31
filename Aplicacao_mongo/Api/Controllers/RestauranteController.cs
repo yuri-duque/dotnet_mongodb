@@ -97,5 +97,25 @@ namespace Api.Controllers
 
             return Ok(new { data = "Restaurante alterado com sucesso" });
         }
+
+        [HttpPatch("{id}")]
+        public ActionResult AlterarCozinha(string id, [FromBody] RestauranteViewModel restauranteAlteracao)
+        {
+            var restaurante = _restauranteRepository.ObterPorId(id);
+
+            if (restaurante is null)
+                return NotFound();
+
+            var cozinha = ECozinhaHelper.ConverterDeInteiro(restauranteAlteracao.Cozinha);
+
+            var resultado = _restauranteRepository.AlterarCozinha(id, cozinha);
+
+            if (!resultado)
+            {
+                return BadRequest(new { erros = "Nenhum documento foi alterado" });
+            }
+
+            return Ok(new { data = "Restaurante alterado com sucesso" });
+        }
     }
 }
