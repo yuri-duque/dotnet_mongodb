@@ -1,6 +1,9 @@
 ﻿using Domain.Enums;
+using Domain.ValueObjects;
 using FluentValidation;
 using FluentValidation.Results;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Domain.Entities
@@ -11,6 +14,7 @@ namespace Domain.Entities
         public string Nome { get; }
         public ECozinha Cozinha { get; }
         public Endereco Endereco { get; private set; }
+        public IList<Avaliacao> Avaliacoes { get; private set; } = new List<Avaliacao>();
 
         #region Construtores
 
@@ -65,6 +69,11 @@ namespace Domain.Entities
         public void SetEndereco(Endereco endereco)
         {
             Endereco = endereco;
+        }
+
+        public void InserirAvaliacao(Avaliacao avaliacao)
+        {
+            Avaliacoes.Add(avaliacao);
         }
 
         #endregion

@@ -1,4 +1,6 @@
-﻿namespace Api.ViewModels.Endereco
+﻿using Domain.ValueObjects;
+
+namespace Api.ViewModels.EnderecoViewModels
 {
     public class EnderecoViewModel
     {
@@ -10,7 +12,7 @@
 
         public EnderecoViewModel() { }
 
-        public EnderecoViewModel(Domain.Entities.Endereco endereco)
+        public EnderecoViewModel(Endereco endereco)
         {
             Logradouro = endereco.Logradouro;
             Numero = endereco.Numero;
@@ -22,9 +24,9 @@
 
     public static class EnderecoViewModelExtensao
     {
-        public static Domain.Entities.Endereco ConverterParaDominio(this EnderecoViewModel viewModel)
+        public static Endereco ConverterParaDominio(this EnderecoViewModel viewModel)
         {
-            var endereco = new Domain.Entities.Endereco(viewModel.UF, viewModel.Cidade, viewModel.CEP, viewModel.Logradouro, viewModel.Numero);
+            var endereco = new Endereco(viewModel.UF, viewModel.Cidade, viewModel.CEP, viewModel.Logradouro, viewModel.Numero);
 
             return endereco;
         }

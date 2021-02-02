@@ -29,6 +29,8 @@ namespace Api
 
             services.AddSingleton<Infra.MongoDB>();
             services.AddScoped<RestauranteRepository>();
+
+            //https://github.com/sergeyzwezdin/Hangfire.Mongo
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

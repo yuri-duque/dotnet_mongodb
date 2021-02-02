@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 
-namespace Domain.Entities
+namespace Domain.ValueObjects
 {
     public class Endereco : AbstractValidator<Endereco>
     {

@@ -1,7 +1,8 @@
-﻿using Api.ViewModels.Endereco;
+﻿using Api.ViewModels.EnderecoViewModels;
+using Domain.Entities;
 using Domain.Enums;
 
-namespace Api.ViewModels.Restaurante
+namespace Api.ViewModels.RestauranteViewModels
 {
     public class RestauranteViewModel
     {
@@ -12,7 +13,7 @@ namespace Api.ViewModels.Restaurante
 
         public RestauranteViewModel() { }
 
-        public RestauranteViewModel(Domain.Entities.Restaurante restaurante)
+        public RestauranteViewModel(Restaurante restaurante)
         {
             Id = restaurante.Id;
             Nome = restaurante.Nome;
@@ -23,11 +24,11 @@ namespace Api.ViewModels.Restaurante
 
     public static class RestauranteViewModelExtensao
     {
-        public static Domain.Entities.Restaurante ConverterParaDominio(this RestauranteViewModel viewModel)
+        public static Restaurante ConverterParaDominio(this RestauranteViewModel viewModel)
         {
             var cozinha = ECozinhaHelper.ConverterDeInteiro(viewModel.Cozinha);
 
-            var restaurante = new Domain.Entities.Restaurante(viewModel.Id, viewModel.Nome, cozinha);
+            var restaurante = new Restaurante(viewModel.Id, viewModel.Nome, cozinha);
             var endereco = viewModel.Endereco.ConverterParaDominio();
             restaurante.SetEndereco(endereco);
 
